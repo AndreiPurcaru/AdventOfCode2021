@@ -1,4 +1,5 @@
 import functools
+
 import numpy as np
 from numpy.typing import NDArray
 
@@ -21,7 +22,8 @@ def day_9_1(matrix: NDArray[int]):
     for row_index in range(1, len(matrix) - 1):
         for col_index in range(1, len(matrix[row_index]) - 1):
             current_el = matrix[row_index][col_index]
-            neighbors = [matrix[row_index + 1][col_index], matrix[row_index - 1][col_index], matrix[row_index][col_index - 1], matrix[row_index][col_index + 1]]
+            neighbors = [matrix[row_index + direction_tuple[0]][col_index + direction_tuple[1]] for direction_tuple in
+                         directions]
             if current_el not in neighbors and current_el <= min(neighbors):
                 summed += current_el + 1
     return summed
@@ -39,7 +41,7 @@ def day_9_2(matrix: NDArray[int]):
 
     index = np.argpartition(count, -3)[-3:]
 
-    return functools.reduce(lambda a, b: a*b, count[index])
+    return functools.reduce(lambda a, b: a * b, count[index])
 
 
 def day_9(part: int = 1):
