@@ -1,13 +1,10 @@
 from collections import deque
-from typing import Tuple, Deque
-
-import numpy as np
-from numpy.typing import NDArray
+from typing import Tuple, Deque, List
 
 directions = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (-1, 1), (1, -1), (-1, -1)]
 
 
-def day_11_calculate(matrix: NDArray[int], steps: int = 100, part: int = 1):
+def day_11_calculate(matrix: List[List[int]], steps: int = 100, part: int = 1):
     total_flashes = 0
     for step in range(steps):
         step_flashes = 0
@@ -45,7 +42,7 @@ def day_11_calculate(matrix: NDArray[int], steps: int = 100, part: int = 1):
 
 def day_11(part: int = 1):
     with open('../input.txt', 'r') as input_file:
-        matrix = np.array([[int(el) for el in line.strip()] for line in input_file.readlines()])
+        matrix = [[int(el) for el in line.strip()] for line in input_file.readlines()]
 
     steps = 100 if part == 1 else 10000
     return day_11_calculate(matrix, steps, part)
