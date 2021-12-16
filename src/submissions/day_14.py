@@ -46,7 +46,8 @@ def day_14(part: int = 1):
         current: str = template[start_index: start_index + 2]
         current_pairs_count[current] += 1
         if part == 1:
-            return count_kids_rec(current, pair_insertions, counter_dict)
+            count_kids_rec(current, pair_insertions, counter_dict)
+            return max(counter_dict.values()) - min(counter_dict.values())
 
     day_14_2(pair_insertions, current_pairs_count, counter_dict, 40)
 
